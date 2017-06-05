@@ -5,7 +5,6 @@ script:
     - SCRIPT=run_build_image.sh
     - curl -O https://raw.githubusercontent.com/cyber-dojo-languages/image_builder/master/${SCRIPT}
     - chmod +x ./${SCRIPT}
-    - cat ./${SCRIPT}
 
     - REPO_URL=https://github.com/${TRAVIS_REPO_SLUG}
     - echo "PASSING ARG=:${REPO_URL}:"
