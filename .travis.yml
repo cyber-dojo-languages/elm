@@ -10,11 +10,6 @@ script:
     - echo "PASSING ARG=:${REPO_URL}:"
     - ./${SCRIPT} ${REPO_URL}
 
-    # push image to dockerhub
+    # push image (which is _not_ name based on TRAVIS_REPO_SLUG) to dockerhub
     - docker login --username "${DOCKER_USERNAME}" --password "${DOCKER_PASSWORD}"
-
-    - ORG_NAME=cyberdojofoundation
-    - TAG_NAME=$(basename ${TRAVIS_REPO_SLUG})
-    - NAME=${ORG_NAME}/${TAG_NAME}
-    - echo "docker push ${NAME}"
-    - docker push ${NAME}
+    - docker push cyberdojofoundation/elm-0.18.0
