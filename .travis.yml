@@ -1,0 +1,22 @@
+sudo: required
+services: docker
+
+script:
+    # better to curl this?
+    - BUILDER=cyberdojofoundation/image_builder
+    - SCRIPT=run_build_image.sh
+    - docker pull ${BUILDER}
+    - docker run --rm -it ${BUILDER} sh -c 'cat ${SCRIPT}' > ${SCRIPT}
+    - chmod +x ./${SCRIPT}
+
+    - echo "PASSING ARG=:${TRAVIS_REPO_SLUG}:"
+    - ./${SCRIPT} ${TRAVIS_REPO_SLUG}
+
+    # push image to dockerhub
+    - docker login --username "${DOCKER_USERNAME}" --password "${DOCKER_PASSWORD}"
+
+    - ORG_NAME=cyberdojofoundation
+    - TAG_NAME=$(basename ${TRAVIS_REPO_SLUG})
+    - NAME=${ORG_NAME}/${TAG_NAME}
+    - echo "docker push ${NAME}"
+    #- docker push ${NAME}
