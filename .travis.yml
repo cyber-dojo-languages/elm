@@ -2,14 +2,9 @@ sudo: required
 services: docker
 
 script:
-    # better to curl this?
     - SCRIPT=run_build_image.sh
     - curl -O https://raw.githubusercontent.com/cyber-dojo-languages/image_builder/master/${SCRIPT}
     - chmod +x ./${SCRIPT}
-
-    #- BUILDER=cyberdojofoundation/image_builder
-    #- docker pull ${BUILDER}
-    #- docker run --rm -it ${BUILDER} sh -c 'cat ${SCRIPT}' > ${SCRIPT}
 
     - REPO_URL=https://github.com/${TRAVIS_REPO_SLUG}
     - echo "PASSING ARG=:${REPO_URL}:"
