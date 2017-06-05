@@ -11,8 +11,9 @@ script:
     #- docker pull ${BUILDER}
     #- docker run --rm -it ${BUILDER} sh -c 'cat ${SCRIPT}' > ${SCRIPT}
 
-    - echo "PASSING ARG=:${TRAVIS_REPO_SLUG}:"
-    - ./${SCRIPT} ${TRAVIS_REPO_SLUG}
+    - REPO_URL=https://github.com/${TRAVIS_REPO_SLUG}
+    - echo "PASSING ARG=:${REPO_URL}:"
+    - ./${SCRIPT} ${REPO_URL}
 
     # push image to dockerhub
     - docker login --username "${DOCKER_USERNAME}" --password "${DOCKER_PASSWORD}"
