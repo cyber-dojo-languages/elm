@@ -16,7 +16,7 @@ script:
     - ./${SCRIPT} ${REPO_URL}
 
     # push image to dockerhub
-    - docker login --username "${DOCKER_USERNAME}" --password "${DOCKER_PASSWORD}"
+    #- docker login --username "${DOCKER_USERNAME}" --password "${DOCKER_PASSWORD}"
 
     - ORG_NAME=cyberdojofoundation
     - TAG_NAME=$(basename ${TRAVIS_REPO_SLUG})
