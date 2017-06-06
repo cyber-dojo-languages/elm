@@ -6,10 +6,5 @@ script:
     - curl -O https://raw.githubusercontent.com/cyber-dojo-languages/image_builder/master/${SCRIPT}
     - chmod +x ./${SCRIPT}
 
-    - REPO_URL=https://github.com/${TRAVIS_REPO_SLUG}
-    - echo "PASSING ARG=:${REPO_URL}:"
-    - ./${SCRIPT} ${REPO_URL}
-
-    # push image (which is _not_ name based on TRAVIS_REPO_SLUG) to dockerhub
-    - docker login --username "${DOCKER_USERNAME}" --password "${DOCKER_PASSWORD}"
-    - docker push cyberdojofoundation/elm-0.18.0
+    - export REPO_URL=https://github.com/${TRAVIS_REPO_SLUG}
+    - ./${SCRIPT} ${PWD}
