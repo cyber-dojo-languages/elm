@@ -1,4 +1,4 @@
-FROM       cyberdojofoundation/ubuntu-build-essential:14.04
+FROM       cyberdojofoundation/ubuntu-build-essential:17.04
 MAINTAINER Jon Jagger <jon@jaggersoft.com>
 
 RUN apt-get update && apt-get install --yes \
