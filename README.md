@@ -1,3 +1,5 @@
-# elm 0.18.0
+# Elm
 
-![Build Status](https://travis-ci.org/cyber-dojo-languages/elm-0.18.0.svg?branch=master)
+![Build Status](https://travis-ci.org/cyber-dojo-languages/elm.svg?branch=master)
+
+Version=0.18.0

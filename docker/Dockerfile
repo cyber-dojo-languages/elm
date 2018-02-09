@@ -9,5 +9,3 @@ RUN apt-get update \
  && apt-get install --yes nodejs
 
 RUN npm install -g elm
-
-RUN npm info elm version
