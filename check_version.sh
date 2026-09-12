@@ -1,13 +1,17 @@
-#!/bin/bash -Eeu
+#!/usr/bin/env bash
+set -Eeu
 
+readonly MY_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 readonly REGEX="image_name\": \"(.*)\""
-readonly JSON=`cat docker/image_name.json`
+readonly JSON=`cat ${MY_DIR}/docker/image_name.json`
 [[ ${JSON} =~ ${REGEX} ]]
 readonly IMAGE_NAME="${BASH_REMATCH[1]}"
 
-readonly MY_DIR="$( cd "$( dirname "${0}" )" && pwd )"
-readonly EXPECTED=0.18.0
-readonly ACTUAL=$(docker run --rm -it ${IMAGE_NAME} sh -c 'npm info elm version')
+# docker/install.sh asks npm for elm without naming a version, so a rebuild
+# picking up a new release stops here and names it, rather than changing what
+# the image offers without saying so.
+readonly EXPECTED="0.19.2"
+readonly ACTUAL=$(docker run --rm -i ${IMAGE_NAME} sh -c 'elm --version')
 
 if echo "${ACTUAL}" | grep -q "${EXPECTED}"; then
   echo "VERSION CONFIRMED as ${EXPECTED}"

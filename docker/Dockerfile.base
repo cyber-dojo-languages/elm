@@ -1,0 +1,11 @@
+FROM node:current-alpine
+LABEL maintainer=jon@jaggersoft.com
+
+# Where the elm compiler looks for the packages it compiles against, and where
+# it takes a lock on every run. It is set here, in the image, because nothing
+# on a kata's command line ever names it: the compiler is started by whichever
+# test runner the image built on this one adds.
+ENV ELM_HOME=/etc/elm/home
+
+COPY install.sh .
+RUN ./install.sh && rm ./install.sh
