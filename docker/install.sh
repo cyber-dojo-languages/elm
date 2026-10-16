@@ -8,7 +8,7 @@
 # one, so anything pinned back to it could only ever be emulated.
 #
 # No version is named here, so a rebuild picks up the current release, and
-# check_version.sh is what stops that happening silently.
+# /versions.json records which one it was.
 npm install --global elm
 
 # Records the Elm this image holds, in the shape every image shares. The
