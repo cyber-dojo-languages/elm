@@ -10,3 +10,23 @@
 # No version is named here, so a rebuild picks up the current release, and
 # check_version.sh is what stops that happening silently.
 npm install --global elm
+
+# Records the Elm this image holds, in the shape every image shares. The
+# installed compiler is asked, so the version is one the image can run rather
+# than one written down when someone last edited this file.
+readonly LANGUAGE_VERSION=$(elm --version)
+
+if [ -z "${LANGUAGE_VERSION}" ]; then
+  echo 'Could not read a version from elm --version' >&2
+  exit 1
+fi
+
+cat > /versions.json <<EOF
+{
+  "language": {
+    "name": "Elm",
+    "version": "${LANGUAGE_VERSION}"
+  },
+  "test_frameworks": []
+}
+EOF
